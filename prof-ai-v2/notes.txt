@@ -1,0 +1,22 @@
+To add components from v0.dev need to 
+1. create new layout.tsx and page.tsx files 
+2. copy the ui folder in path folder
+3. copy component.tsx file contents in page.tsx file
+4. copy layout.tsx file into layout.tsx
+5. ensure that the type of the child is specified (code below):
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode; // need to define children explicitly, which is done here
+}>) {
+    return (
+        // whatever is inside return
+    )
+}
+
+6. use gpt to combine global.css files
+7. use gpt to combine tailwind.config.ts files 
+8. resolve any errors in package.json
+-> only need to do css steps once if theme is the same
+-> of css different however then u need to add new global.css in different component folders
