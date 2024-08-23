@@ -10,9 +10,7 @@ import type { CarouselApi } from "@/components/ui/carousel"
 import { LoadingSpinner } from './loading';
 import React from 'react';
 
-
 type StringArrayDictionary = { [key: string]: string[] };
-
 
 export function ProfEmailDisplay() {
   const { shareData, setShareData } = useShareDataContext()
@@ -33,13 +31,10 @@ export function ProfEmailDisplay() {
   const [fileName, setFileName] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-
-
   function delay(ms: number) {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
   
-
   useEffect(() => {
     if (shareData && professors.length === 0) {
       const data = shareData["data"]
@@ -49,7 +44,6 @@ export function ProfEmailDisplay() {
 
       const student_to_add: string[] = data["student_info"]
       setStudentInfo(student_to_add)
-
 
       const prof_to_abstracts: StringArrayDictionary = {}
 
@@ -290,28 +284,7 @@ export function ProfEmailDisplay() {
             <div className="prose text-muted-foreground">
               {currEmail ? formatEmailContent(currEmail, currSubjectLine) : (
                 <div>
-                  <p>Dear [Prospect Name],</p>
-                  <p>
-                    I hope this email finds you well. My name is [Your Name], and I work at [Your Company]. I came across your
-                    profile and was impressed by your work in [Relevant Industry/Field].
-                  </p>
-                  <p>
-                    I believe our [Product/Service] could be a great fit for your [Prospect's Pain Point]. We've helped
-                    similar businesses like yours [Relevant Benefit] and I'd love the opportunity to discuss how we can do the
-                    same for you.
-                  </p>
-                  <p>
-                    Would you be available for a quick call this week to learn more? I'm flexible and can work around your
-                    schedule.
-                  </p>
-                  <p>Thank you for your time, and I look forward to connecting.</p>
-                  <p>
-                    Best regards,
-                    <br />
-                    [Your Name]
-                    <br />
-                    [Your Company]
-                  </p>
+                  This is where your email will go...
                 </div>
               )}
             </div>

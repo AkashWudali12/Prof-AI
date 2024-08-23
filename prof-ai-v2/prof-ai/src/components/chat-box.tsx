@@ -101,100 +101,101 @@ export function ChatBox() {
         {loading ? (
           <LoadingSpinner /> // Show loading spinner if loading state is true
         ) : (
-          <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-            <div className="flex flex-col gap-2">
-              <div className="flex items-center justify-between">
-                <div className="flex flex-col gap-1">
-                  <h1 className="text-2xl font-bold text-card-foreground">Prof.AI</h1>
-                  <p className="text-sm text-muted-foreground">
-                    Select your research interest from the dropdown or upload your resume as a PDF.
-                  </p>
+          <>
+            <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+              <div className="flex flex-col gap-2">
+                <div className="flex items-center justify-between">
+                  <div className="flex flex-col gap-1">
+                    <h1 className="text-2xl font-bold text-card-foreground">Prof.AI</h1>
+                    <p className="text-sm text-muted-foreground">
+                      Select your research interest from the dropdown or upload your resume as a PDF.
+                    </p>
+                  </div>
                 </div>
-              </div>
 
-              {/* Student's Name Input */}
-              <div className="flex flex-col gap-2">
-                <label htmlFor="name" className="text-sm text-muted-foreground">Name</label>
-                <input
-                  type="text"
-                  id="name"
-                  value={name}
-                  onChange={handleNameChange}
-                  className="w-full rounded-lg border border-input bg-background text-foreground px-4 py-2"
-                  placeholder="Enter your name"
-                />
-              </div>
-
-              {/* Student's School Input */}
-              <div className="flex flex-col gap-2">
-                <label htmlFor="school" className="text-sm text-muted-foreground">School</label>
-                <input
-                  type="text"
-                  id="school"
-                  value={school}
-                  onChange={handleSchoolChange}
-                  className="w-full rounded-lg border border-input bg-background text-foreground px-4 py-2"
-                  placeholder="Enter your school"
-                />
-              </div>
-
-              {/* Student's Grade Selection */}
-              <div className="flex flex-col gap-2">
-                <label htmlFor="school" className="text-sm text-muted-foreground">Grade Level</label>
-                <input
-                  type="text"
-                  id="grade"
-                  value={grade}
-                  onChange={handleGradeChange}
-                  className="w-full rounded-lg border border-input bg-background text-foreground px-4 py-2"
-                  placeholder="Enter your grade level"
-                />
-              </div>
-
-
-              {/* Textarea and Send Button */}
-              <div className="flex flex-col gap-4">
-                <div className="relative">
-                  <textarea
-                    placeholder="Type your message..."
-                    className="w-full rounded-lg border border-input bg-background text-foreground px-4 py-2 pr-16 focus:outline-none focus:ring-1 focus:ring-primary"
-                    rows={4}
-                    onChange={handleMessageChange}
+                {/* Student's Name Input */}
+                <div className="flex flex-col gap-2">
+                  <label htmlFor="name" className="text-sm text-muted-foreground">Name</label>
+                  <input
+                    type="text"
+                    id="name"
+                    value={name}
+                    onChange={handleNameChange}
+                    className="w-full rounded-lg border border-input bg-background text-foreground px-4 py-2"
+                    placeholder="Enter your name"
                   />
-                  <Button
-                    type="submit"
-                    size="icon"
-                    className="absolute top-1/2 -translate-y-1/2 right-3 text-muted-foreground hover:text-foreground"
-                  >
-                    <SendIcon className="w-5 h-5" />
-                    <span className="sr-only">Send</span>
-                  </Button>
+                </div>
+
+                {/* Student's School Input */}
+                <div className="flex flex-col gap-2">
+                  <label htmlFor="school" className="text-sm text-muted-foreground">School</label>
+                  <input
+                    type="text"
+                    id="school"
+                    value={school}
+                    onChange={handleSchoolChange}
+                    className="w-full rounded-lg border border-input bg-background text-foreground px-4 py-2"
+                    placeholder="Enter your school"
+                  />
+                </div>
+
+                {/* Student's Grade Selection */}
+                <div className="flex flex-col gap-2">
+                  <label htmlFor="school" className="text-sm text-muted-foreground">Grade Level</label>
+                  <input
+                    type="text"
+                    id="grade"
+                    value={grade}
+                    onChange={handleGradeChange}
+                    className="w-full rounded-lg border border-input bg-background text-foreground px-4 py-2"
+                    placeholder="Enter your grade level"
+                  />
+                </div>
+
+                {/* Textarea and Send Button */}
+                <div className="flex flex-col gap-4">
+                  <div className="relative">
+                    <textarea
+                      placeholder="Type your message..."
+                      className="w-full rounded-lg border border-input bg-background text-foreground px-4 py-2 pr-16 focus:outline-none focus:ring-1 focus:ring-primary"
+                      rows={4}
+                      onChange={handleMessageChange}
+                    />
+                    <Button
+                      type="submit"
+                      size="icon"
+                      className="absolute top-1/2 -translate-y-1/2 right-3 text-muted-foreground hover:text-foreground"
+                    >
+                      <SendIcon className="w-5 h-5" />
+                      <span className="sr-only">Send</span>
+                    </Button>
+                  </div>
+                </div>
+
+                {/* Select a school */}
+                <div className="flex flex-col gap-4">
+                  <div className="relative flex-grow">
+                    <Select onValueChange={handleOptionChange} value={selectedOption ? selectedOption : "Select a school"}>
+                      <SelectTrigger className="w-full rounded-lg border border-input bg-background text-foreground px-4 py-2 pr-16 focus:outline-none focus:ring-1 focus:ring-primary">
+                        {selectedOption ? selectedOption : "Select a school"}
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectViewport className="max-h-40 overflow-y-auto select-content-overlay">
+                          <SelectItem value="Select a school">
+                            <p className="text-sm text-muted-foreground"> Select a school </p>
+                          </SelectItem>
+                          <SelectItem value="UMD">
+                            <p className="text-sm text-muted-foreground"> University of Maryland - College Park </p>
+                          </SelectItem>
+                        </SelectViewport>
+                      </SelectContent>
+                    </Select>
+                  </div>
                 </div>
               </div>
-
-              {/* Select a school */}
-              <div className="flex flex-col gap-4">
-                <div className="relative flex-grow">
-                  <Select onValueChange={handleOptionChange} value={selectedOption ? selectedOption : "Select a school"}>
-                    <SelectTrigger className="w-full rounded-lg border border-input bg-background text-foreground px-4 py-2 pr-16 focus:outline-none focus:ring-1 focus:ring-primary">
-                      {selectedOption ? selectedOption : "Select a school"}
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectViewport className="max-h-40 overflow-y-auto select-content-overlay">
-                        <SelectItem value="Select a school">
-                          <p className="text-sm text-muted-foreground"> Select a school </p>
-                        </SelectItem>
-                        <SelectItem value="UMD">
-                          <p className="text-sm text-muted-foreground"> University of Maryland - College Park </p>
-                        </SelectItem>
-                      </SelectViewport>
-                    </SelectContent>
-                  </Select>
-                </div>
-              </div>
-
-            </div>
-          </form>
+            </form>
+            <p className="text-sm text-muted-foreground text-center mt-4">More schools coming soon!</p>
+          </>
         )}
       </div>
     </div>
@@ -281,3 +282,4 @@ export const ChevronUpIcon: React.FC<IconProps> = (props) => {
     </svg>
   );
 };
+
