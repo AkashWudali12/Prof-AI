@@ -70,7 +70,7 @@ export function ChatBox() {
       console.log("Message:", message)
 
       try {
-        const response = await fetch('http://127.0.0.1:5000/get_professor_description', {
+        const response = await fetch('http://0.0.0.0:5000/get_professor_description', {
             method: 'POST',
             body: formData
         });
@@ -182,10 +182,10 @@ export function ChatBox() {
                       <SelectContent>
                         <SelectViewport className="max-h-40 overflow-y-auto select-content-overlay">
                           <SelectItem value="Select a school">
-                            <p className="text-sm text-muted-foreground"> Select a school </p>
+                            <p className="text-sm text-muted-foreground" style={{ backgroundColor: '#f0f0f0' }}> Select a school </p>
                           </SelectItem>
                           <SelectItem value="UMD">
-                            <p className="text-sm text-muted-foreground"> University of Maryland - College Park </p>
+                            <p className="text-sm text-muted-foreground" style={{ backgroundColor: '#f0f0f0' }}> University of Maryland - College Park </p>
                           </SelectItem>
                         </SelectViewport>
                       </SelectContent>

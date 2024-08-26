@@ -124,7 +124,7 @@ export function ProfEmailDisplay() {
         formData.append("file", file)
 
         try {
-          const response = await fetch('http://127.0.0.1:5000/get_resume_text', {
+          const response = await fetch('http://0.0.0.0:5000/get_resume_text', {
             method: 'POST',
             body: formData
           });
@@ -135,7 +135,7 @@ export function ProfEmailDisplay() {
             console.log(resumeText)
 
             try {
-              const response = await fetch('http://127.0.0.1:5000/generate_email', {
+              const response = await fetch('http://0.0.0.0:5000/generate_email', {
                   method: 'POST',
                   headers: {
                       'Content-Type': 'application/json'
