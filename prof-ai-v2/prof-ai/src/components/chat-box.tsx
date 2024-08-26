@@ -70,7 +70,7 @@ export function ChatBox() {
       console.log("Message:", message)
 
       try {
-        const response = await fetch('https://21fa-129-2-89-231.ngrok-free.app/get_professor_description', {
+        const response = await fetch('https://prof-ai-579919193707.us-east4.run.app/get_professor_description', {
             method: 'POST',
             body: formData
         });

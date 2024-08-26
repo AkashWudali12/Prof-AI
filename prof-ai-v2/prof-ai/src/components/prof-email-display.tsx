@@ -124,7 +124,7 @@ export function ProfEmailDisplay() {
         formData.append("file", file)
 
         try {
-          const response = await fetch('https://21fa-129-2-89-231.ngrok-free.app/get_resume_text', {
+          const response = await fetch('https://prof-ai-579919193707.us-east4.run.app/get_resume_text', {
             method: 'POST',
             body: formData
           });
@@ -135,7 +135,7 @@ export function ProfEmailDisplay() {
             console.log(resumeText)
 
             try {
-              const response = await fetch('https://21fa-129-2-89-231.ngrok-free.app/generate_email', {
+              const response = await fetch('https://prof-ai-579919193707.us-east4.run.app/generate_email', {
                   method: 'POST',
                   headers: {
                       'Content-Type': 'application/json'
