@@ -1,0 +1,25 @@
+.container {
+    max-width: 600px; /* Adjust width as necessary */
+    margin-left: 20px; /* Margin to the left to give some space from the browser edge */
+    padding: 20px; /* Padding around the content inside the container */
+    margin-top: 50px; /* Additional space at the top of the component */
+    border: 1px solid #ccc; /* Optional: adds a border for better visibility */
+}
+
+.top-text {
+    margin-bottom: 20px; /* Space between the text and the image/text content */
+}
+
+.content {
+    display: flex; /* Enables flexbox layout */
+    align-items: center; /* Vertically center aligns the items */
+}
+
+.image {
+    width: 150px; /* Fixed width for the image */
+    margin-right: 20px; /* Space between the image and the right text */
+}
+
+.right-text {
+    flex: 1; /* Takes remaining space */
+}

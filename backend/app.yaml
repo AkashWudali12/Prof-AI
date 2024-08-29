@@ -1,0 +1,2 @@
+rumtime: python 311
+entrypoints: gunicorn -b :$PORT app:app

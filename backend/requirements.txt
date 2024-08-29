@@ -12,3 +12,6 @@ sentence-transformers==3.0.1
 tiktoken==0.7.0
 Werkzeug==3.0.3
 gunicorn==20.1.0
+SQLAlchemy==2.0.30
+cloud-sql-python-connector==1.12.0
+pg8000==1.31.2

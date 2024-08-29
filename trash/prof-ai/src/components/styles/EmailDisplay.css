@@ -1,0 +1,22 @@
+/* EmailDisplay.css */
+
+.email-container {
+    border: 1px solid #ccc;
+    padding: 16px;
+    margin: 16px;
+    border-radius: 8px;
+    max-width: 600px;
+    background-color: #f9f9f9;
+}
+
+.email-header p {
+    margin: 4px 0;
+    font-size: 14px;
+    color: #333;
+}
+
+.email-body {
+    margin-top: 16px;
+    font-size: 16px;
+    color: #444;
+}

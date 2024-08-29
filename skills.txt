@@ -1,0 +1,1 @@
+Next.js, vercel, TypeScript, Selenium, HTML, CSS, OpenAI API, Prompt Engineering, Google Search API, 

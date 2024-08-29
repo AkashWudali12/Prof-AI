@@ -1,8 +1,6 @@
-from flask import Flask, request, jsonify, send_from_directory
+from flask import Flask, request, jsonify
 from flask_cors import CORS
 import sys
-from langchain.schema.messages import SystemMessage
-from pprint import pprint
 import tiktoken as tk
 from werkzeug.utils import secure_filename
 import os
@@ -11,9 +9,10 @@ from web_scraper.classes.ai_agent import OPEN_AI_AGENT
 from dotenv import load_dotenv
 import os
 from pinecone import Pinecone
-import psycopg2
 from sentence_transformers import SentenceTransformer
 
+from google.cloud.sql.connector import Connector
+import sqlalchemy
 
 
 
@@ -58,6 +57,23 @@ Sincerely,
 [Your Contact Information]
 """
 
+def getconn():
+    print("GET CONN")
+    connector = Connector()
+
+    conn = connector.connect(
+        os.getenv("INSTANCE_CONNECTION_NAME"),
+        "pg8000",
+        user=os.getenv("DB_USER"),
+        password=os.getenv("DB_PASS"),
+        db=os.getenv("DB_NAME")
+    )
+    return conn
+
+pool = sqlalchemy.create_engine(
+    "postgresql+pg8000://",
+    creator=getconn,
+)
 
 @app.route("/get_professor_description", methods=['POST'])
 def get_professor_from_interest_description():
@@ -88,7 +104,7 @@ def get_professor_from_interest_description():
         top_k_authors = index.query(
                 namespace=university,
                 vector=message_embedding,
-                top_k=10,
+                top_k=7,
                 include_values=True,
                 filter={
                     "id": {"$nin": exclude}  
@@ -100,27 +116,21 @@ def get_professor_from_interest_description():
         authors_map = {}
 
         print(author_id_list)
-
-        connection = psycopg2.connect(
-                host="localhost",       # e.g., "localhost" or your database host
-                database="prof-ai", # Replace with your database name
-                user="postgres",        # Replace with your PostgreSQL username
-                password=password       # Use the password from the environment variable
-            )
         
-        cursor = connection.cursor()
-        select_query = """
-            SELECT abstract_list FROM abstracts WHERE professor_id = %s;
-            """
-
-        # (abstract_list, metadata)
+        select_query = sqlalchemy.text("""
+            SELECT abstract_list 
+            FROM abstracts 
+            WHERE professor_id = :professor_id
+        """)
         
         for professor_id in author_id_list:
-            cursor.execute(select_query, (professor_id,))
-            result = cursor.fetchone()
+            with pool.connect() as db_conn:
+                result = db_conn.execute(select_query, {"professor_id": professor_id})
+                db_conn.commit()
+                abstracts = result.fetchall()
 
-            if result:
-                abstract_list = result[0]  # result[0] contains the abstract_list
+            if abstracts:
+                abstract_list = abstracts[0][0]  # result[0] contains the abstract_list
                 print("Abstract List Found")
             else:
                 abstract_list = []
@@ -138,9 +148,6 @@ def get_professor_from_interest_description():
 
             if abstract_list:
                 authors_map[professor_id] = (abstract_list, metadata)
-        
-        cursor.close()
-        connection.close()
         
         system_message = """
             Your job is to provide information of 

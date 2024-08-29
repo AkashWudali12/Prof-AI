@@ -2,7 +2,7 @@ from human_request import HUMAN_REQUEST
 
 class GET_PROFS_FROM_UMD_DIR:
     def __init__(self):
-        self.faculty_listing = "https://faculty.eng.umd.edu/clark/facultydir?page=0&drfilter=-1?pg=48"
+        self.faculty_listing = "https://faculty.eng.umd.edu/clark/facultydir?page=0&drfilter=5"
 
     def extract_profs_information(self):
         # Initialize lists to hold the extracted data
@@ -15,7 +15,7 @@ class GET_PROFS_FROM_UMD_DIR:
         num_pages = 27
         for i in range(num_pages):
             print("Page Number:", i + 1)
-            self.faculty_listing = "https://faculty.eng.umd.edu/clark/facultydir?page=" + str(i) + "&drfilter=-1?pg=48"
+            self.faculty_listing = "https://faculty.eng.umd.edu/clark/facultydir?page=" + str(i) + "&drfilter=5"
             human_request = HUMAN_REQUEST(url=self.faculty_listing)
             soup = human_request.get_soup()
 
