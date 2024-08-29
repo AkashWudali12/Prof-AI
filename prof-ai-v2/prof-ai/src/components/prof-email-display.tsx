@@ -237,7 +237,7 @@ export function ProfEmailDisplay() {
       </Button>
       <div className="relative flex flex-col items-start">
         <h3>Use left/right arrows to switch profiles</h3>
-        <h3>Click "Generate Email" to create a cold email for the selected profile</h3>
+        <h3>Click &quot;Generate Email&quot; to create a cold email for the selected profile.</h3>
         <Carousel className="w-full rounded-xl overflow-hidden" setApi={setApi}>
           <CarouselPrevious className="absolute left-4 top-1/2 -translate-y-1/2 z-10 text-muted-foreground hover:text-primary-foreground">
             <ChevronLeftIcon className="w-6 h-6" />
