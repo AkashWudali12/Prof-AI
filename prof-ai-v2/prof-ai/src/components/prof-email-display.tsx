@@ -168,7 +168,7 @@ export function ProfEmailDisplay() {
         setLoading(false)
       }
       else {
-        alert("Please attach your resume.")
+        alert("Please upload your resume.")
       }
     }
 
@@ -226,7 +226,18 @@ export function ProfEmailDisplay() {
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-6xl mx-auto py-12 px-4 md:px-6">
+
+      <Button
+          variant="ghost"
+          className="absolute top-4 left-4"
+          onClick={() => router.push('/')}
+        >
+          <ChevronLeftIcon className="w-6 h-6" />
+          Back
+      </Button>
       <div className="relative flex flex-col items-start">
+        <h3>Use left/right arrows to switch profiles</h3>
+        <h3>Click "Generate Email" to create a cold email for the selected profile</h3>
         <Carousel className="w-full rounded-xl overflow-hidden" setApi={setApi}>
           <CarouselPrevious className="absolute left-4 top-1/2 -translate-y-1/2 z-10 text-muted-foreground hover:text-primary-foreground">
             <ChevronLeftIcon className="w-6 h-6" />
@@ -275,7 +286,7 @@ export function ProfEmailDisplay() {
             <div className="mt-8">
             <div className="flex justify-between items-center">
               <h3 className="text-xl font-semibold text-muted-foreground">
-                Cold Email
+                Cold Email (click the button to copy)
               </h3>
               <Button variant="outline" className="text-muted-foreground hover:text-foreground" onClick={copyEmail}>
                 {copiedEmail ? (<CheckIcon /> ) : (<CopyIcon className="w-5 h-5" />)}

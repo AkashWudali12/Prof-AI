@@ -68,7 +68,6 @@ export function ChatBox() {
 
       console.log("Selected Option:", selectedOption);
       console.log("Message:", message)
-
       try {
         const response = await fetch('https://prof-ai-579919193707.us-east4.run.app/get_professor_description', {
             method: 'POST',
@@ -108,7 +107,8 @@ export function ChatBox() {
                   <div className="flex flex-col gap-1">
                     <h1 className="text-2xl font-bold text-card-foreground">Prof.AI</h1>
                     <p className="text-sm text-muted-foreground">
-                      Select your research interest from the dropdown or upload your resume as a PDF.
+                      Enter Your Information: Please fill out your personal details in the provided fields.
+                      Select a School: Choose the school you want to research from the dropdown menu.
                     </p>
                   </div>
                 </div>
@@ -156,7 +156,7 @@ export function ChatBox() {
                 <div className="flex flex-col gap-4">
                   <div className="relative">
                     <textarea
-                      placeholder="Type your message..."
+                      placeholder="Describe your research interests (ex: I am interested in Machine Learing Research)"
                       className="w-full rounded-lg border border-input bg-background text-foreground px-4 py-2 pr-16 focus:outline-none focus:ring-1 focus:ring-primary"
                       rows={4}
                       onChange={handleMessageChange}
